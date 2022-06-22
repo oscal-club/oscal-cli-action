@@ -1,0 +1,9 @@
+[submodule "vendor/metaschema-java"]
+	path = vendor/metaschema-java
+	url = https://github.com/oscal-club/metaschema-java.git
+[submodule "vendor/liboscal-java"]
+	path = vendor/liboscal-java
+	url = https://github.com/oscal-club/liboscal-java.git
+[submodule "vendor/oscal-cli"]
+	path = vendor/oscal-cli
+	url = https://github.com/oscal-club/oscal-cli.git
