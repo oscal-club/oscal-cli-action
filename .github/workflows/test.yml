@@ -1,0 +1,31 @@
+on:
+  - repository_dispatch
+  - workflow_dispatch
+  - push
+  - pull_request
+
+jobs:
+  oscal-cli-action:
+    runs-on: ubuntu-22.04
+    continue-on-error: false
+    name: Integration Tests
+    steps:
+      # To use this repository's private action,
+      # we must check out the repository
+      - name: Checkout
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
+        id: checkout
+      - name: Setup Java
+        uses: actions/setup-java@c3ac5dd0ed8db40fedb61c32fbe677e6b355e94c
+        with:
+          distribution: adopt
+          java-version: 11
+        id: setup_java
+      - name: Run oscal-cli for version check (debugging on)
+        uses: ./
+        id: oscal_cli_basic
+      - name: Run oscal-cli for version check (debugging off)
+        uses: ./
+        with:
+          debug: true
+        id: oscal_cli_basic_debug
