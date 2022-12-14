@@ -1,0 +1,43 @@
+name: 'oscal-cli action'
+description: 'Use oscal-cli to validate OSCAL content, convert OSCAL content, and perform processing of underlying Metaschema definitions'
+inputs:
+  args:
+    description: 'Default arguments to run oscal-cli with'
+    default: '--version'
+    required: false
+  debug:
+    description: 'Enable debug output in action (set -x). Helpful for troubleshooting.'
+    default: false
+    required: false
+  oscalCliPackageUrl:
+    description: 'The URL from which the oscal-cli package will be downloaded and installed.'
+    default: 'https://repo1.maven.org/maven2/gov/nist/secauto/oscal/tools/oscal-cli/cli-core'
+  oscalCliVersion: 
+    description: 'Use a custom version of the oscal-cli'
+    default: 0.3.1
+    required: false
+outputs:
+  exit_code:
+    description: "The exit code returned from Lychee"
+    value: ${{ steps.lychee.outputs.exit_code }}
+runs:
+  using: "composite"
+  steps:
+    - name: Install lychee
+      run: |
+        curl -sLO '${{ inputs.OSCALCLIPACKAGEURL }}/${{ inputs.OSCALCLIVERSION}}/cli-core-${{ inputs.OSCALCLIVERSION}}-oscal-cli.tar.bz2'
+        mkdir -p $HOME/.local/oscal-cli
+        tar -C $HOME/.local/oscal-cli -xvjf cli-core-${{ inputs.OSCALCLIVERSION}}-oscal-cli.tar.bz2
+        echo "$HOME/.local/oscal-cli/bin" >> $GITHUB_PATH
+      shell: bash
+    - name: Run oscal-cli
+      run: ${{ github.action_path }}/entrypoint.sh
+      id: oscal_cli
+      env:
+        # https://github.com/actions/runner/issues/665
+        INPUT_GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        INPUT_ARGS: ${{ inputs.ARGS }}
+      shell: bash
+branding:
+  icon: "external-link"
+  color: "purple"
