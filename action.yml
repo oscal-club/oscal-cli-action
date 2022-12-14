@@ -18,12 +18,12 @@ inputs:
     required: false
 outputs:
   exit_code:
-    description: "The exit code returned from Lychee"
-    value: ${{ steps.lychee.outputs.exit_code }}
+    description: "The exit code returned from oscal-cli"
+    value: ${{ steps.oscal_cli.outputs.exit_code }}
 runs:
   using: "composite"
   steps:
-    - name: Install lychee
+    - name: Install oscal-cli
       run: |
         curl -sLO '${{ inputs.OSCALCLIPACKAGEURL }}/${{ inputs.OSCALCLIVERSION}}/cli-core-${{ inputs.OSCALCLIVERSION}}-oscal-cli.tar.bz2'
         mkdir -p $HOME/.local/oscal-cli
@@ -36,6 +36,7 @@ runs:
       env:
         # https://github.com/actions/runner/issues/665
         INPUT_GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        INPUT_DEBUG: ${{ inputs.DEBUG }}
         INPUT_ARGS: ${{ inputs.ARGS }}
       shell: bash
 branding:
