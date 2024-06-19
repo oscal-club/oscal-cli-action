@@ -29,3 +29,11 @@ jobs:
         with:
           debug: true
         id: oscal_cli_basic_debug
+      - name: Run oscal-cli for version check (debugging on)
+        uses: ./
+        id: oscal_cli_basic
+      - name: Run oscal-cli for version check (debugging off)
+        uses: ./
+        run: |
+          date
+        id: alternate_shell_command
