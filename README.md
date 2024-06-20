@@ -23,6 +23,7 @@ the code and setup a Java runtime as dependencies, or it will fail.
     args: ssp validate repo/path/to/ssp.xml
   id: validate_ssp
 - name: Run shell command  with all setup and context from before
-    date
+  run: |
+    ls -lha
   id: post_setup_shell_command
 ```
