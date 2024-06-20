@@ -17,9 +17,12 @@ the code and setup a Java runtime as dependencies, or it will fail.
     distribution: adopt
     java-version: 11
   id: setup_java
-- name: Run oscal-cli for version check (debugging on)
-  uses: oscal-club/oscal-cli-action@v1.0.0
+- name: Validate SSP schema and constraints
+  uses: oscal-club/oscal-cli-action@v1.0.4
   with:
     args: ssp validate repo/path/to/ssp.xml
-  id: convert_ssp
+  id: validate_ssp
+- name: Run shell command  with all setup and context from before
+    date
+  id: post_setup_shell_command
 ```
