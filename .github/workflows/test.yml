@@ -29,3 +29,7 @@ jobs:
         with:
           debug: true
         id: oscal_cli_basic_debug
+      - name: Run another command that is not oscal-cli after setup
+        run: |
+          date
+        id: alternate_shell_command
