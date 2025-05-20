@@ -11,7 +11,7 @@ inputs:
     required: false
   oscalCliPackageUrl:
     description: 'The URL from which the oscal-cli package will be downloaded and installed.'
-    default: 'https://repo1.maven.org/maven2/dev/metaschema/oscal/oscal-cli-enhanced/2.5.0/oscal-cli-enhanced-2.5.0-oscal-cli.tar.bz2'
+    default: 'https://repo1.maven.org/maven2/dev/metaschema/oscal/oscal-cli-enhanced/2.5.1/oscal-cli-enhanced-2.5.1-oscal-cli.tar.bz2'
     required: true
 outputs:
   exit_code:
