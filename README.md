@@ -1,6 +1,6 @@
 # oscal-cli-action
 
-A GitHub Action to process, convert, and validate OSCAL content with the NIST oscal-cli tool.
+A GitHub Action to process, convert, and validate OSCAL content with the [`oscal-cli` that the metaschema-framework community maintains](https://github.com/metaschema-framework/oscal-cli) or the original [NIST version of the tool](https://github.com/usnistgov/oscal-cli).
 
 # Usage
 
@@ -18,9 +18,9 @@ the code and setup a Java runtime as dependencies, or it will fail.
     java-version: 11
   id: setup_java
 - name: Validate SSP schema and constraints
-  uses: oscal-club/oscal-cli-action@v1.0.4
+  uses: oscal-club/oscal-cli-action@v2.0.1
   with:
-    args: ssp validate repo/path/to/ssp.xml
+    args: validate workspace/path/to/ssp.xml
   id: validate_ssp
 - name: Run shell command  with all setup and context from before
   run: |
