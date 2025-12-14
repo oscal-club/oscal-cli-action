@@ -26,3 +26,4 @@ echo
 
 # Pass oscal-cli exit code to next step
 echo "oscalcli_exit_code=$exit_code" >> $GITHUB_ENV
+exit $exit_code
